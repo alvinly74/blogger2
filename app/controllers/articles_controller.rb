@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
 	include ArticlesHelper
-
+before_filter :require_login, only: [:new, :create, :edit, :update, :destroy]
     def index
         @articles = Article.all
     end
@@ -43,12 +43,4 @@ class ArticlesController < ApplicationController
 
       redirect_to article_path(@article)
     end
-
-    def tag_list
-      tags.join(", ")
-    end
-    
-    def tag_list=(tags_string)
-
-  end
 end
